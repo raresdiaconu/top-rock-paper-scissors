@@ -74,19 +74,29 @@ function keepScore() {
     return `${humanScore} - ${computerScore}`;
 }
 
+//I have switched the game to a "best out of X" game.
+
 function game() {
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    if (humanScore > computerScore) {
-        return "You have won!"
-    } else if (computerScore > humanScore){
-        return "You have lost."
-    } else {
-        return "It's a tie!"
+    if (humanScore < 3 && computerScore < 3) {
+        console.log(keepScore());
+        game();
     }
+    return "Who was the best out of 3?"
 }
 
 console.log(game());
+
+//I have added a new function to announce the winner.
+//I didn't know how to add the ELSE statements straight to the function above.
+
+function announceWinner(humanScore, computerScore) {
+    if (humanScore > computerScore) {
+        return "You were! Congrats.:)"
+    } else if (computerScore > humanScore){
+        return "Ooop! It was the computer. Bummer.:("
+    } else {
+        return "It's a tie! Try again!"
+    }
+}
+
+console.log(announceWinner(humanScore, computerScore));
