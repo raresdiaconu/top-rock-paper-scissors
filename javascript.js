@@ -12,7 +12,9 @@ function computerPlay() {
 let playerSelection;
 let computerSelection;
 
-// Create a function with the name of playRound that asks the user for input and then compares it to the pick made by the computer at random. It then returns the winner along with a message.
+// Create a function with the name of playRound that asks the user for input.
+// It should then compare it to the pick made by the computer at random.
+// It should then returns the winner along with a message.
 
 function playRound(playerSelection, computerSelection) {
 
@@ -80,8 +82,10 @@ function game() {
     console.log(keepScore());
     if (humanScore > computerScore) {
         return "You have won!"
-    } else {
+    } else if (computerScore > humanScore){
         return "You have lost."
+    } else {
+        return "It's a tie!"
     }
 }
 
