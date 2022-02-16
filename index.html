@@ -5,9 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script src="javascript.js"></script>
+    <script src="https://kit.fontawesome.com/bb08ff041c.js" crossorigin="anonymous"></script>
+    <script src="javascript.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="wrapper">
+        <header>
+            <H1 class="title">Rock-Paper-Scissors</H1>
+        </header>
+        <main class="game-content">
+            <h2 class="game-title announce-winner">Make a selection to start the game:</h2>
+            <section class="options">   
+                <div class="option rock">
+                    <button class="icon-button"><i class="fa-solid fa-hand-back-fist icon"></i></button>
+                    <p>Rock</p>
+                </div>
+                <div class="option paper">
+                    <button class="icon-button"><i class="fa-solid fa-hand-dots icon"></i></button>
+                    <p>Paper</p>
+                </div>
+                <div class="option scissors">
+                    <button class="icon-button"><i class="fa-solid fa-hand-peace icon"></i></button>
+                    <p>Scissors</p>
+                </div>
+            </section>
+            <div class="score">
+                <h2 class="keep-score">It's you VS the computer.</h2>
+                <button class="restart-game">RESTART</button>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
