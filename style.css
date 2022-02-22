@@ -5,10 +5,6 @@
     font-family: 'Titan One', cursive;
 }
 
-body {
-    color: rgb(10, 0, 46);
-}
-
 .wrapper {
     background-color: #e44848;
     width: 100%;
@@ -43,7 +39,15 @@ main {
     margin-bottom: 5vh;
 }
 
-/* Option buttons + score keeping*/
+.announce-winner {
+    transition: 0.2s;
+}
+
+.announce-game-winner {
+    transform: scale(1.2);
+}
+
+/* Player Selection Options */
 
 .options {
     display: flex;
@@ -66,7 +70,7 @@ main {
 .icon {
     color: #e44848;
     font-size: 50px;
-    transition: all 0.2s ease-in;
+    transition: 0.1s;
 }
 
 .icon-active {
@@ -74,19 +78,28 @@ main {
     transform: scale(1.1);
 }
 
+/* Score */
+
 .score {
     text-align: center;
 }
+
+/* Game Restart Button */
 
 .restart-game {
     padding: 0.5rem 1rem;
     margin-top: 0.5rem;
     background-color: #e4484875;
+    border-radius: 0.35rem;
     border: none;
     color: #FFE6BE;
     letter-spacing: 1px;
     font-size: 1rem;
-    transition: all 0.1s ease-in;
+    transition: 0.2s;
+}
+
+.restart-game:hover {
+    opacity: 0.9;
 }
 
 .restart-game-whileplaying {
@@ -94,7 +107,6 @@ main {
 }
 
 .restart-game-click {
-    color: #4b37a1;
     transform: scale(1.1);
 }
 
