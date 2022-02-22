@@ -1,4 +1,9 @@
-// Create a function with the name computerPlay that randomly returns "Rock", "Paper" or "Scissors";
+let playerScore = 0;
+let computerScore = 0;
+let gamesCount = 0;
+const selection = document.querySelectorAll('.icon');
+const roundWinner = document.querySelector('.announce-winner');
+const score = document.querySelector(".keep-score")
 
 function computerPlay() {
     const computerMoves = ["Rock", "Paper", "Scissors"];
@@ -6,87 +11,61 @@ function computerPlay() {
     return computerMoves[randomIndex];
 }
 
-// Create a variable with the name playerSelection.
-// Create a variable with the name computerSelection.
+selection.forEach(choice => choice.addEventListener('click', startGame));
+function startGame(e) {
+    const sel = document.querySelector(`i[id = "${e.target.id}"]`)
+    sel.classList.add("icon-active");
+    playRound(e.target.id);
+    keepScore();
+    if (gamesCount === 5) {
+        game();
+        selection.forEach(choice => choice.removeEventListener('click', startGame));
+    };
+}
 
-let playerSelection;
-let computerSelection;
+//Removes the styling of the selection after the button has been clicked.
+selection.forEach(choice => choice.addEventListener('transitionend', removeTransition));
+function removeTransition(e) {
+    if (e.propertyName !== "transform") return;
+    this.classList.remove("icon-active");
+}
 
-// Create a function with the name of playRound that asks the user for input.
-// It should then compare it to the pick made by the computer at random.
-// It should then returns the winner along with a message.
-
-function playRound(playerSelection, computerSelection) {
-
-    playerSelection = prompt("Rock, Paper, Scissors");
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerPlay();
-
-    console.log(`Human: ${playerSelection}`);
-    console.log(`Computer: ${computerSelection}`);
-
+function playRound(playerSelection) {
+    const computerSelection = computerPlay();
     switch (true) {
         case (playerSelection === "rock" && computerSelection === "Rock"):
         case (playerSelection === "paper" && computerSelection === "Paper"):
         case (playerSelection === "scissors" && computerSelection === "Scissors"):
-            return "It's a tie!";
+            roundWinner.textContent = "It's a tie!";
+            gamesCount++;
             break;
         case (playerSelection === "rock" && computerSelection === "Scissors"):
-            return "Rock beats scissors! You won!";
-            break;
         case (playerSelection === "paper" && computerSelection === "Rock"):
-            return "Paper beats rock! You won!";
-            break;
         case (playerSelection === "scissors" && computerSelection === "Paper"):
-            return "Scissors beat paper! You won!";
+            roundWinner.textContent = "Good pick! You won!";
+            playerScore++;
+            gamesCount++;
             break;
         case (playerSelection === "scissors" && computerSelection === "Rock"):
-            return "Rock beats scissors! Computer won.";
-            break;
         case (playerSelection === "rock" && computerSelection === "Paper"):
-            return "Paper beats rock! Computer won.";
-            break;
         case (playerSelection === "paper" && computerSelection === "Scissors"):
-            return "Scissors beat paper! Computer won."
+            roundWinner.textContent = "Shucks! The computer won.";
+            computerScore++;
+            gamesCount++;
             break;
-        default:
-            return "Unknown value. Please write Rock, Paper or Scissors.";
     }
 }
 
-// Create a function game() that plays the game 5 times.
-// The function should keep track of the score.
-// The function should announce the winner after 5 rounds have been played.
-
-let computerScore = 0;
-let humanScore = 0;
-
 function keepScore() {
-    let gameResult = playRound(playerSelection, computerSelection);
-    console.log(gameResult);
-    if (gameResult === "Rock beats scissors! You won!" || gameResult === "Paper beats rock! You won!" || gameResult === "Scissors beat paper! You won!") {
-        humanScore++;
-    } else if (gameResult === "Rock beats scissors! Computer won." || gameResult === "Paper beats rock! Computer won." || gameResult === "Scissors beat paper! Computer won.") {
-        computerScore++;
-    } else if (gameResult === "Unknown value. Please write Rock, Paper or Scissors.") {
-        keepScore();
-    }
-    return `${humanScore} - ${computerScore}`;
+    score.textContent = `You ${playerScore} - ${computerScore} Computer`;
 }
 
 function game() {
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    console.log(keepScore());
-    if (humanScore > computerScore) {
-        return "You have won!"
-    } else if (computerScore > humanScore){
-        return "You have lost."
+    if (playerScore > computerScore) {
+        roundWinner.textContent = "Congrats! You beat the computer!";
+    } else if (playerScore < computerScore) {
+        roundWinner.textContent = "You lost. Play another round?";
     } else {
-        return "It's a tie!"
+        roundWinner.textContent = "It's a tie. Play another round?";
     }
 }
-
-console.log(game());
