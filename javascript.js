@@ -93,7 +93,7 @@ function playRound(playerSelection) {
 }
 
 function keepScore() {
-    score.textContent = `You ${playerScore} - ${computerScore} Computer`;
+    score.textContent = `You ${playerScore} - ${computerScore} PC`;
 }
 
 function announceGameWinner() {
